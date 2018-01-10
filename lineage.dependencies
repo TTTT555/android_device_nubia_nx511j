@@ -1,7 +1,7 @@
 [
   {
-    "repository": "android_kernel_nubia_msm8939",
-    "target_path": "kernel/nubia/msm8939"
+    "repository": "android_kernel_nubia_nx511j",
+    "target_path": "kernel/nubia/nx511j"
   },
   {
     "repository": "android_device_qcom_common",
