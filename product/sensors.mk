@@ -2,9 +2,7 @@
 PRODUCT_PACKAGES += \
     libjni_proximityCalibrate \
     ProximityCalibrate \
-    sensors.msm8916 \
-    libcalmodule_common \
-    calmodule.cfg
+    sensors.msm8916
 
 # Permissions
 PRODUCT_COPY_FILES += \
