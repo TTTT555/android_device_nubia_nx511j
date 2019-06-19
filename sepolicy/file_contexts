@@ -1,6 +1,6 @@
 # Shell files
-/system/vendor/bin/init\.qcom\.mem\.sh              u:object_r:qti_init_shell_exec:s0
-/system/vendor/bin/tp\.node\.sh                     u:object_r:qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/init\.qcom\.mem\.sh              u:object_r:qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/tp\.node\.sh                     u:object_r:qti_init_shell_exec:s0
 
 #tp.node data files 
 /data/tp(/.*)?                                               u:object_r:system_data_file:s0
@@ -9,8 +9,8 @@
 /sys/devices/soc\.0/78b9000\.i2c/i2c-5(/.*)?                 u:object_r:tpnode_sysfs:s0
 
 # Vulkan
-/system/vendor/lib/hw/vulkan\.msm8916\.so    u:object_r:same_process_hal_file:s0
-/system/vendor/lib(64)?/hw/vulkan\.msm8916\.so    u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib/hw/vulkan\.msm8916\.so    u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib(64)?/hw/vulkan\.msm8916\.so    u:object_r:same_process_hal_file:s0
 
 # Audio
 /system/etc/usb_audio_policy_configuration.xml    u:object_r:vendor_configs_file:s0
