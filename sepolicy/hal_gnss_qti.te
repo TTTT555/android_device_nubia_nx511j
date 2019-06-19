@@ -1,0 +1,2 @@
+allow hal_gnss_qti servicemanager:binder call;
+dontaudit hal_gnss_qti self:udp_socket create;
