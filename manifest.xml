@@ -281,4 +281,13 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="hidl">
+        <name>android.hardware.health</name>
+        <transport>hwbinder</transport>
+        <version>1.1</version>
+        <interface>
+            <name>IHealth</name>
+            <instance>backup</instance>
+        </interface>
+    </hal>
 </manifest>
