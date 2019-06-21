@@ -40,8 +40,8 @@ LOCAL_HEADER_LIBRARIES := \
     liblocation_api_headers
 
 LOCAL_MODULE := libgps.utils
-LOCAL_VENDOR_MODULE := true
-LOCAL_MODULE_OWNER := qti
+LOCAL_MODULE_PATH_32 := $(TARGET_OUT_VENDOR)/lib
+LOCAL_MODULE_PATH_64 := $(TARGET_OUT_VENDOR)/lib64
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_CFLAGS += $(GNSS_CFLAGS)
@@ -53,4 +53,4 @@ LOCAL_MODULE := libgps.utils_headers
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_HEADER_LIBRARY)
 
-include $(addsuffix /Android.mk, $(addprefix $(LOCAL_PATH)/, platform_lib_abstractions))
+include $(call all-makefiles-under,$(LOCAL_PATH))
