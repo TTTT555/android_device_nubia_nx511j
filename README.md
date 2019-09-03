@@ -21,3 +21,5 @@ Release Date | March 2015
 ![ZTE Nubia Z9 Mini](http://static.nubia.cn/product/max/images/params/params_z9max02.jpg "ZTE Nubia Z9 Mini")
 
 P.S. After "lunch", check the availability of repositories in your work directory, specified in lineage.dependencies, and add them manually, if they are missing.
+
+P.P.S If you get an error on libpack.so, try revert this commit  https://github.com/LineageOS/android_external_v8/commit/a4819ee9770448b76005d47d2642c1dc4b3978fd
