@@ -16,6 +16,7 @@ vendor.audio.offload.gapless.enabled=true
 vendor.voice.path.for.pcm.voip=true
 
 # Bluetooth
+#vendor.bluetooth.soc=pronto
 vendor.qcom.bluetooth.soc=smd
 bluetooth.hfp.client=1
 ro.bluetooth.hfp.ver=1.7
