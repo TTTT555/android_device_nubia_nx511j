@@ -26,5 +26,9 @@
 /sys/devices/virtual/android_usb/android0(/.*)?     u:object_r:sysfs_android_usb:s0
 
 # led
-/sys/class/leds/nubia_led/(/.*)?		u:object_r:sysfs:s0
+/sys/class/leds(/.*)?   u:object_r:sysfs_leds:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.light@2\.0-service\.nubia     u:object_r:hal_light_default_exec:s0
 
+
+# firmware
+/firmware(/.*)?        u:object_r:firmware_file:s0

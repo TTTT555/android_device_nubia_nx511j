@@ -5,6 +5,7 @@ ro.vendor.audio.sdk.fluencetype=fluence
 persist.vendor.audio.fluence.voicecall=true
 persist.vendor.audio.fluence.voicerec=false
 persist.vendor.audio.fluence.speaker=false
+persist.vendor.audio.hw.binder.size_kbyte=1024
 af.fast_track_multiplier=1
 audio.deep_buffer.media=true
 audio.offload.min.duration.secs=30
@@ -14,14 +15,20 @@ vendor.audio.offload.buffer.size.kb=64
 vendor.audio_hal.period_size=192
 vendor.audio.offload.gapless.enabled=true
 vendor.voice.path.for.pcm.voip=true
+ro.audio.flinger_standbytime_ms=300
 
 # Bluetooth
+#vendor.bluetooth.soc=pronto
 vendor.qcom.bluetooth.soc=smd
 bluetooth.hfp.client=1
 ro.bluetooth.hfp.ver=1.7
 ro.qualcomm.bt.hci_transport=smd
 # ro.bluetooth.sap=true
 # ro.bluetooth.dun=true
+
+# Boot
+ro.build.shutdown_timeout=0
+sys.vendor.shutdown.waittime=500
 
 # Display
 ro.sf.lcd_density=480
@@ -30,6 +37,15 @@ debug.mdpcomp.idletime=600
 persist.hwc.mdpcomp.enable=true
 persist.hwc.ptor.enable=true
 debug.enable.sglscale=1
+ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+ro.surface_flinger.start_graphics_allocator_service=true
+ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
+ro.surface_flinger.protected_contents=true
+ro.surface_flinger.vsync_event_phase_offset_ns=2000000
+ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
+debug.sf.enable_gl_backpressure=1
+debug.sf.latch_unsignaled=1
+debug.sf.recomputecrop=0
 
 #First API Level
 ro.product.first_api_level=22
@@ -37,6 +53,13 @@ ro.product.first_api_level=22
 # OpenGLES
 ro.opengles.version=196610
 debug.hwui.use_buffer_age=false
+#debug.hwui.renderer=opengl
+
+# Play store
+ro.com.google.clientidbase.am=android-nubia
+ro.com.google.clientidbase.gmm=android-nubia
+ro.com.google.clientidbase.ms=android-nubia
+ro.com.google.clientidbase.yt=android-nubia
 
 # Product
 ro.product.model=NX511J
@@ -47,12 +70,21 @@ persist.camera.hal.debug.mask=0
 camera2.portability.force_api=1
 
 # Dalvik
+persist.sys.purgeable_assets=1
+dalvik.vm.verify-bytecode=false
+dalvik.vm.dex2oat-flags=--no-watch-dog
+dalvik.vm.checkjni=false
 dalvik.vm.heapstartsize=16m
 dalvik.vm.heapgrowthlimit=192m
 dalvik.vm.heapsize=512m
 dalvik.vm.heaptargetutilization=0.75
 dalvik.vm.heapminfree=2m
 dalvik.vm.heapmaxfree=8m
+pm.dexopt.shared=quicken
+pm.dexopt.downgrade_after_inactive_days=10
+dalvik.vm.boot-dex2oat-threads=8
+dalvik.vm.dex2oat-threads=8
+dalvik.vm.image-dex2oat-threads=8
 
 # FRP
 ro.frp.pst=/dev/block/platform/soc.0/7824900.sdhci/by-name/config
@@ -63,8 +95,13 @@ ro.config.max_starting_bg=8
 # Media
 drm.service.enabled=1
 vidc.enc.narrow.searchrange=1
+debug.stagefright.ccodec=0
+debug.stagefright.omx_default_rank.sw-audio=1
+debug.stagefright.omx_default_rank=0
 
 # Memory optimizations
+ro.vendor.qti.am.reschedule_service=true
+ro.vendor.qti.sys.fw.use_trim_settings=true
 ro.vendor.qti.sys.fw.bservice_enable=true
 
 # Perf
@@ -91,6 +128,14 @@ ro.telephony.ril.config=simactivation,sim2gsmonly
 # Storage
 ro.sys.sdcardfs=false
 
+# Set lowram options
+persist.traced.enable=1
+ro.lmk.critical_upgrade=true
+ro.lmk.upgrade_pressure=40
+ro.lmk.downgrade_pressure=60
+ro.lmk.kill_heaviest_task=false
+ro.statsd.enable=true
+
 # USB
 ro.usb.id.midi=90BA
 ro.usb.id.midi_adb=90BB
@@ -101,6 +146,9 @@ ro.usb.id.ptp_adb=904E
 ro.usb.id.ums=F000
 ro.usb.id.ums_adb=9015
 ro.usb.vid=05c6
+
+# VNDK
+ro.vendor.vndk.version=28
 
 # WiFi
 wifi.interface=wlan0
