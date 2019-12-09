@@ -30,6 +30,10 @@ debug.mdpcomp.idletime=600
 persist.hwc.mdpcomp.enable=true
 persist.hwc.ptor.enable=true
 debug.enable.sglscale=1
+debug.sf.early_phase_offset_ns=1500000
+debug.sf.early_app_phase_offset_ns=1500000
+debug.sf.early_gl_phase_offset_ns=3000000
+debug.sf.early_gl_app_phase_offset_ns=15000000
 
 #First API Level
 ro.product.first_api_level=22
@@ -59,6 +63,7 @@ ro.frp.pst=/dev/block/platform/soc.0/7824900.sdhci/by-name/config
 
 # Perf
 ro.config.max_starting_bg=8
+ro.config.low_ram=true
 
 # Media
 drm.service.enabled=1
