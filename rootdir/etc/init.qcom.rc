@@ -439,3 +439,7 @@ service wcnss-service /vendor/bin/wcnss_service
 service qcom-mem /vendor/bin/init.qcom.mem.sh
     disabled
     oneshot
+
+on property:apexd.status=ready
+    mount none /system/etc/swcodec/ld.config.txt /apex/com.android.media.swcodec/etc/ld.config.txt bind
+

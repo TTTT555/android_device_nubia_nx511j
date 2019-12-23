@@ -7,9 +7,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.dsi.ant.antradio_library.xml
 
+# APEX
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/ld.config.txt:$(TARGET_COPY_OUT_SYSTEM)/etc/swcodec/ld.config.txt
+
 # Audio
 PRODUCT_PACKAGES += \
     audio.primary.msm8916 \
+    audio_policy.msm8916 \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
@@ -21,18 +26,15 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
     libqcomvoiceprocessingdescriptors \
     libqcompostprocbundle
+    
 
 PRODUCT_PACKAGES += \
-    android.hardware.audio@4.0-impl \
-    android.hardware.audio.effect@4.0-impl \
-    android.hardware.soundtrigger@2.1-impl \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio@2.0-service \
+    android.hardware.audio.effect@2.0-impl \
+    android.hardware.audio.effect@2.0-service \
+    android.hardware.soundtrigger@2.0-impl \
     android.hardware.broadcastradio@1.0-impl
-
-PRODUCT_PACKAGES += \
-    audio.bluetooth.default \
-    android.hardware.bluetooth.audio@2.0-impl \
-    android.hardware.bluetooth.a2dp@1.0-impl
-   
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.midi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.midi.xml \
@@ -56,8 +58,15 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
 
-
 # Bluetooth
+PRODUCT_PACKAGES += \
+    audio.bluetooth.default \
+    android.hardware.bluetooth.audio@2.0-impl \
+    android.hardware.bluetooth.a2dp@1.0-impl \
+    android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-service \
+    libbt-vendor
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth_le.xml
@@ -75,6 +84,14 @@ PRODUCT_COPY_FILES += \
 # make the external camera provider ignore internal cameras
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
+
+# Dex
+PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
+PRODUCT_ALWAYS_PREOPT_EXTRACTED_APK := true
+PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
+PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/config/boot-image-profile.txt
+PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
+PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 
 # Display
 PRODUCT_PACKAGES += \
@@ -99,6 +116,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
     android.hardware.drm@1.0-service
+
+# Encryption
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.cryptfshw@1.0-service-qti.qsee
 
 # FM
 PRODUCT_PACKAGES += \
@@ -192,10 +213,8 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-service
 
 # Keystore
-#ifneq ($(TARGET_PROVIDES_KEYMASTER),true)
-#PRODUCT_PACKAGES += \
-#    keystore.msm8916
-#endif
+PRODUCT_PACKAGES += \
+    keystore.msm8916
 
 # Media
 PRODUCT_PACKAGES += \

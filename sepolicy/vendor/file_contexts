@@ -28,3 +28,6 @@
 # led
 /sys/class/leds/nubia_led/(/.*)?		u:object_r:sysfs:s0
 
+# firmware
+/firmware(/.*)?        u:object_r:firmware_file:s0
+
