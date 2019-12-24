@@ -257,13 +257,21 @@
     <!-- Default list of files pinned by the Pinner Service -->
     <string-array translatable="false" name="config_defaultPinnerServiceFiles">
         <item>"/system/framework/arm64/boot-framework.oat"</item>
-        <item>"/system/framework/arm64/boot-framework.vdex"</item>
+        <item>"/system/framework/framework.jar"</item>
         <item>"/system/framework/oat/arm64/services.odex"</item>
-        <item>"/system/framework/oat/arm64/services.vdex"</item>
+        <item>"/system/framework/services.jar"</item>
         <item>"/system/framework/arm64/boot.oat"</item>
         <item>"/system/framework/arm64/boot.vdex"</item>
         <item>"/system/framework/arm64/boot-core-libart.oat"</item>
         <item>"/system/framework/arm64/boot-core-libart.vdex"</item>
+        <item>"/system/priv-app/SystemUI/SystemUI.apk"</item>
+        <item>"/product/priv-app/SystemUI/oat/arm64/SystemUI.odex"</item>
+        <item>"/data/dalvik-cache/arm64/system@product@priv-app@SystemUI@SystemUI.apk@classes.dex"</item>
+        <item>"/data/dalvik-cache/arm64/system@product@priv-app@SystemUI@SystemUI.apk@classes.vdex"</item>
+        <item>"/apex/com.android.runtime/javalib/core-oj.jar"</item>
+        <item>"/apex/com.android.runtime/javalib/core-libart.jar"</item>
+        <item>"/apex/com.android.media/javalib/updatable-media.jar"</item>
+        <item>"/system/lib/libsurfaceflinger.so"</item>
    </string-array>
 
     <!-- Indicate whether closing the lid causes the device to go to sleep and opening
@@ -346,5 +354,27 @@
 
 	    <!-- Disable rounded corners on windows to improve graphics performance -->
     <bool name="config_supportsRoundedCornersOnWindows">false</bool>
+
+    <!-- Enables or disables haptic effect when the text insertion/selection handle is moved
+         manually by the user. Off by default, since the expected haptic feedback may not be
+         available on some devices. -->
+    <bool name="config_enableHapticTextHandle">true</bool>
+
+    <string-array name="config_locationProviderPackageNames" translatable="false">
+        <!-- The Google provider -->
+        <item>com.google.android.gms</item>
+        <!-- The standard AOSP fused location provider -->
+        <item>com.android.location.fused</item>
+    </string-array>
+
+    <bool name="config_cellBroadcastAppLinks">true</bool>
+
+    <!-- A list of potential packages, in priority order, that may contain an
+         ephemeral resolver. Each package will be be queried for a component
+         that has been granted the PACKAGE_EPHEMERAL_AGENT permission.
+         This may be empty if ephemeral apps are not supported. -->
+    <string-array name="config_ephemeralResolverPackage">
+        <item>com.google.android.gms</item>
+    </string-array>
 
 </resources>

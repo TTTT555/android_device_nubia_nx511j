@@ -29,7 +29,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <sensors_extension.h>
 #include "sensors_XML.h"
-#include <cutils/log.h>
+#include <log/log.h>
 #include "unistd.h"
 #include <fcntl.h>
 #include <sys/stat.h>

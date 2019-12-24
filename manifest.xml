@@ -1,8 +1,8 @@
 <manifest version="1.0" type="device">
     <hal format="hidl">
         <name>android.hardware.audio</name>
-        <transport arch="32+64">passthrough</transport>
-        <version>4.0</version>
+        <transport>hwbinder</transport>
+        <version>2.0</version>
         <interface>
             <name>IDevicesFactory</name>
             <instance>default</instance>
@@ -10,8 +10,8 @@
     </hal>
     <hal format="hidl">
         <name>android.hardware.audio.effect</name>
-        <transport arch="32+64">passthrough</transport>
-        <version>4.0</version>
+        <transport>hwbinder</transport>
+        <version>2.0</version>
         <interface>
             <name>IEffectsFactory</name>
             <instance>default</instance>
@@ -61,15 +61,6 @@
             <name>ICameraProvider</name>
             <instance>external/0</instance>
             <instance>legacy/0</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.cas</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IMediaCasService</name>
-            <instance>default</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -346,6 +337,15 @@
         <version>2.0</version>
         <interface>
             <name>IHealth</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.qti.hardware.cryptfshw</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ICryptfsHw</name>
             <instance>default</instance>
         </interface>
     </hal>
