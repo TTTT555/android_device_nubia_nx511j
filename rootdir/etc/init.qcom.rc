@@ -40,7 +40,7 @@ on early-init
     write /sys/class/leds/lcd-backlight/trigger "backlight"
 
 on init
-    export LD_PRELOAD libshim_atomic.so
+#    export LD_PRELOAD libboringssl-compat.so
 
 on fs
     wait /dev/block/platform/soc.0/${ro.boot.bootdevice}
@@ -432,5 +432,5 @@ service qcom-mem /vendor/bin/init.qcom.mem.sh
     disabled
     oneshot
 
-on property:apexd.status=ready
-    mount none /system/etc/swcodec/ld.config.txt /apex/com.android.media.swcodec/etc/ld.config.txt bind
+#on property:apexd.status=ready
+#    mount none /system/etc/swcodec/ld.config.txt /apex/com.android.media.swcodec/etc/ld.config.txt bind

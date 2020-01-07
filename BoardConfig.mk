@@ -65,6 +65,7 @@ TARGET_USES_QCOM_MM_AUDIO := true
 AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
 #USE_LEGACY_AUDIO_POLICY := 1
 AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT := true
+AUDIO_FEATURE_ENABLED_FLUENCE := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -89,7 +90,9 @@ BOARD_CAMERA_SENSORS := imx234 imx179
 
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
 	/vendor/bin/mm-qcamera-daemon=25 \
-    /system/bin/mediaserver=25
+    /vendor/lib/libqomx_jpegenc.so=25 \
+    /system/system/bin/mediaserver=25 \
+    /vendor/lib/libboringssl-compat.so=25
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
@@ -226,12 +229,12 @@ BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(PLATFORM_PATH)/sepolicy/private
 TARGET_USES_SDCLANG := true
 
 # SHIM
-TARGET_LD_SHIM_LIBS := /vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so \
-    /vendor/lib/hw/camera.msm8916.so|libzte_camera.so \
-    /vendor/lib/libskia.so|libshim_skia.so
-
-# Shipping API
-#PRODUCT_SHIPPING_API_LEVEL := 22
+TARGET_LD_SHIM_LIBS := /vendor/lib/hw/camera.msm8916.so|libzte_camera.so \
+    /vendor/lib/hw/camera.msm8916.so|libshim_atomic.so \
+    /vendor/lib/libskia.so|libshim_skia.so \
+    /vendor/bin/perfd|libshim_atomic.so \
+    /vendor/lib/libmmcamera2_imglib_modules.so|libshim_atomic.so \
+    /vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
 
 # Treble
 #BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true

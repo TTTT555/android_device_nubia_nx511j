@@ -103,6 +103,8 @@ debug.stagefright.omx_default_rank=0
 ro.vendor.qti.am.reschedule_service=true
 ro.vendor.qti.sys.fw.use_trim_settings=true
 ro.vendor.qti.sys.fw.bservice_enable=true
+media.stagefright.legacyencoder=true
+#media.stagefright.less-secure=true
 
 # Perf
 ro.min_freq_0=200000

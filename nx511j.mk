@@ -434,3 +434,5 @@ PRODUCT_COPY_FILES += \
 
 # Shipping Android version
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_l.mk)
+# Shipping API
+#PRODUCT_SHIPPING_API_LEVEL := 22
