@@ -1,10 +1,8 @@
 
-Lineage OS 16.0 (Android 9.0 Pie)
-device configuration for 
-ZTE Nubia Z9 Mini NX511J
+Android 9.0 Pie treble configuration for phh's GSIs, making on sources of Lineage OS 16.0 for ZTE Nubia Z9 Mini NX511J
 =====================================
 
-Now this tree used with repartitioned devices. See more: https://tinyurl.com/y6m48gb2 
+This tree used with repartitioned devices. See more: https://tinyurl.com/y6m48gb2 
 
 Basic   | Spec Sheet
 -------:|:-------------------------
@@ -22,6 +20,11 @@ Release Date | March 2015
 
 ![ZTE Nubia Z9 Mini](http://static.nubia.cn/product/max/images/params/params_z9max02.jpg "ZTE Nubia Z9 Mini")
 
-XDA: https://forum.xda-developers.com/z9-mini/development/rom-resurrection-remix-pie-7-x-x-nubia-t3937207
+4PDA: https://4pda.ru/forum/index.php?showuser=3775328
 
-P.S. After "lunch", check the availability of repositories in your work directory, specified in lineage.dependencies, and add them manually, if they are missing.
+P.S. For include FM radio to vendor.img, 
+cd ~<LOS16_sources>/packages/apps/FMRadio/Android.mk and add LOCAL_VENDOR_MODULE := true
+
+If you need made only boot.img and vendor.img - use ```mka vendorimage```
+
+
