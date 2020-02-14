@@ -1,0 +1,1 @@
+allow location media_rw_data_file:file { rx_file_perms };

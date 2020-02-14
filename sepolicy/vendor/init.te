@@ -1,7 +1,40 @@
 allow init sysfs:file setattr;
 allow init debugfs:file write;
 allow init proc:file { r_file_perms };
-allow init system_file:file mounton;
+allow init system_file:file { mounton execute_no_trans };
+allow init platform_app:binder { call transfer };
+allow init servicemanager:binder { call };
+allow init hwservicemanager:binder { call };
+allow init system_server:binder { call transfer };
+allow init mediacodec:binder { call transfer };
+allow init mediaserver_service:service_manager { add find };
+allow init cameraserver_service:service_manager { add };
+allow init hal_camera_hwservice:hwservice_manager { find };
+allow init hidl_allocator_hwservice:hwservice_manager { find };
+allow init thermal_socket:sock_file { rw_file_perms };
+allow init thermal-engine:unix_stream_socket { connectto };
+allow init video_device:chr_file { rw_file_perms };
+allow init ion_device:chr_file { rw_file_perms };
+allow init mm-qcamerad:unix_dgram_socket { sendto };
+allow init hal_omx_hwservice:hwservice_manager { find };
+allow init processinfo_service:service_manager { find };
+allow init batterystats_service:service_manager { find };
+allow init appops_service:service_manager { find };
+allow init cameraproxy_service:service_manager { find };
+allow init hal_lineage_camera_motor_hwservice:hwservice_manager { find };
+allow init permission_service:service_manager { find };
+allow init media_rw_data_file:file { x_file_perms };
+allow init activity_service:service_manager { find };
+allow init vendor_file:file { rx_file_perms };
+allow init pmsg_device:chr_file { r_file_perms };
+allow init mediaextractor_service:service_manager { find };
+allow init mediaextractor:binder { call };
+allow init drmserver_service:service_manager { find };
+allow init drmserver:drmservice { openDecryptSession };
+allow init audioserver_service:service_manager { find };
+allow init audioserver:binder { call transfer };
+allow init hidl_memory_hwservice:hwservice_manager { find };
+allow init mediametrics_service:service_manager { find };
 
 
 # required for LD_PRELOAD

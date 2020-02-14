@@ -1,1 +1,1 @@
-allow idmap vendor_file:file { read execute getattr };
+allow idmap vendor_file:file { rx_file_perms };

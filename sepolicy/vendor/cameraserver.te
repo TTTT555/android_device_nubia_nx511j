@@ -70,4 +70,5 @@ allow cameraserver vendor_file:file { rx_file_perms };
 
 allow cameraserver video_device:chr_file { rw_file_perms };
 allow cameraserver hidl_allocator_hwservice:hwservice_manager { find };
+allow cameraserver default_android_hwservice:hwservice_manager { find };
 

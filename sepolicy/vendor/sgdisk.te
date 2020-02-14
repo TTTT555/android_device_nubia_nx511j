@@ -1,1 +1,1 @@
-allow sgdisk vendor_file:file { open read getattr };
+allow sgdisk vendor_file:file { rx_file_perms };

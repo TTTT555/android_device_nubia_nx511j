@@ -1,1 +1,2 @@
 allow platform_app vendor_file:file { open read getattr };
+allow platform_app init:binder { call transfer };
