@@ -1,1 +1,1 @@
-allow sdcardd vendor_file:file { open read getattr execute };
+allow sdcardd vendor_file:file { rx_file_perms };

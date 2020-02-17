@@ -1,1 +1,1 @@
-allow bootanim vendor_file:file { read open execute getattr };
+allow bootanim vendor_file:file { rx_file_perms };

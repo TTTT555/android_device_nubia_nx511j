@@ -1,1 +1,1 @@
-allow logpersist vendor_file:file { execute read open getattr };
+allow logpersist vendor_file:file { rx_file_perms };

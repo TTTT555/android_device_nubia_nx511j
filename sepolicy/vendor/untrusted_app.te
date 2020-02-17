@@ -28,3 +28,5 @@
 unix_socket_connect(untrusted_app,dpmtcm, dpmd);
 allow untrusted_app dpmtcm_socket:sock_file w_file_perms;
 allow untrusted_app dpmd:unix_stream_socket connectto;
+
+allow untrusted_app vendor_file:file { r_file_perms };
