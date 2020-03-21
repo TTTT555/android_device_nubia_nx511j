@@ -39,9 +39,6 @@ on early-init
     # Turn off backlight on blank
     write /sys/class/leds/lcd-backlight/trigger "backlight"
 
-on init
-#    export LD_PRELOAD libboringssl-compat.so
-
 on fs
     wait /dev/block/platform/soc.0/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc.0/${ro.boot.bootdevice} /dev/block/bootdevice
@@ -51,6 +48,7 @@ on fs
     #enable zram
     write /sys/block/zram0/comp_algorithm lz4
     write /proc/sys/vm/page-cluster 0
+    write /proc/sys/vm/swappiness 100
 
     restorecon_recursive /persist
 
@@ -251,13 +249,13 @@ service rmt_storage /vendor/bin/rmt_storage
     writepid /dev/cpuset/system-background/tasks
     shutdown critical
 
-service cnd /system/bin/cnd
-    class late_start
-    socket cnd stream 660 root inet
+#service cnd /system/bin/cnd
+#    class late_start
+#    socket cnd stream 660 root inet
 
-service dpmd /system/bin/dpmd
-    class main
-    socket dpmd stream 660 root system
+#service dpmd /system/bin/dpmd
+#    class main
+#    socket dpmd stream 660 root system
 
 service hciattach /vendor/bin/hci_qcomm_init -e
     class late_start
@@ -336,10 +334,10 @@ service charger /charger
     group log
     seclabel u:r:healthd:s0
 
-service ssr_diag /system/bin/ssr_diag
-    class late_start
-    user system
-    group system
+#service ssr_diag /system/bin/ssr_diag
+#    class late_start
+#    user system
+#    group system
 
 service poweroffcharge /sbin/poweroffcharge
     class charger
@@ -351,9 +349,18 @@ service qcamerasvr /vendor/bin/mm-qcamera-daemon
     group camera media system inet input graphics gps
     writepid /dev/cpuset/camera-daemon/tasks
 
+on property:init.svc.media=restarting
+    restart qcamerasvr
+
+ on property:init.svc.servicemanager=restarting
+    restart qcamerasvr
+
+# sometimes mediaserver is named as media (restart for legacy HAL1)
 on property:sys.boot_completed=1
     setprop vendor.post_boot.parsed 1
     swapon_all /vendor/etc/fstab.qcom
+    restart cameraserver
+    restart media
     restart mediaserver
 
 # Allow usb charging to be disabled peristently
@@ -392,10 +399,10 @@ service time_daemon /vendor/bin/time_daemon
    group root
    writepid /dev/cpuset/system-background/tasks
 
-service audiod /system/bin/audiod
-   class late_start
-   user system
-   group system
+#service audiod /system/bin/audiod
+#   class late_start
+#   user system
+#   group system
 
 service ppd /vendor/bin/mm-pp-daemon
     class late_start
@@ -431,6 +438,3 @@ service wcnss-service /vendor/bin/wcnss_service
 service qcom-mem /vendor/bin/init.qcom.mem.sh
     disabled
     oneshot
-
-#on property:apexd.status=ready
-#    mount none /system/etc/swcodec/ld.config.txt /apex/com.android.media.swcodec/etc/ld.config.txt bind

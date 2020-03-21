@@ -1,1 +1,1 @@
-#allow perfd proc_kernel_sched:file { open read write };
+allow perfd proc_kernel_sched:file { open read write };

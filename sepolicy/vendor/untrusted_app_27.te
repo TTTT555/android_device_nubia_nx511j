@@ -28,3 +28,7 @@
 unix_socket_connect(untrusted_app_27,dpmtcm, dpmd);
 allow untrusted_app_27 dpmtcm_socket:sock_file w_file_perms;
 allow untrusted_app_27 dpmd:unix_stream_socket connectto;
+allow untrusted_app_27 proc_stat:file { open read getattr };
+allow untrusted_app_27 vendor_file:file { r_file_perms };
+allow untrusted_app_27 sysfs_kgsl:file { open read getattr };
+allow untrusted_app_27 system_data_file:file { r_file_perms };

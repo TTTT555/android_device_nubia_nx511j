@@ -268,10 +268,8 @@
         <item>"/product/priv-app/SystemUI/oat/arm64/SystemUI.odex"</item>
         <item>"/data/dalvik-cache/arm64/system@product@priv-app@SystemUI@SystemUI.apk@classes.dex"</item>
         <item>"/data/dalvik-cache/arm64/system@product@priv-app@SystemUI@SystemUI.apk@classes.vdex"</item>
-        <item>"/apex/com.android.runtime/javalib/core-oj.jar"</item>
-        <item>"/apex/com.android.runtime/javalib/core-libart.jar"</item>
-        <item>"/apex/com.android.media/javalib/updatable-media.jar"</item>
         <item>"/system/lib/libsurfaceflinger.so"</item>
+        <item>"/system/lib64/libsurfaceflinger.so"</item>
    </string-array>
 
     <!-- Indicate whether closing the lid causes the device to go to sleep and opening
@@ -341,7 +339,7 @@
     <!-- Amount of time it takes for the light sensor to warm up in milliseconds.
          For this time after the screen turns on, the Power Manager
          will not debounce light sensor readings -->
-    <integer name="config_lightSensorWarmupTime">250</integer>
+    <integer name="config_lightSensorWarmupTime">400</integer>
 
     <!-- Initial light sensor event rate in milliseconds for automatic brightness control. This is
          used for obtaining the first light sample when the device stops dozing.
@@ -352,7 +350,7 @@
     <!-- Light sensor event rate in milliseconds for automatic brightness control. -->
     <integer name="config_autoBrightnessLightSensorRate">250</integer>
 
-	    <!-- Disable rounded corners on windows to improve graphics performance -->
+    	    <!-- Disable rounded corners on windows to improve graphics performance -->
     <bool name="config_supportsRoundedCornersOnWindows">false</bool>
 
     <!-- Enables or disables haptic effect when the text insertion/selection handle is moved
@@ -375,6 +373,15 @@
          This may be empty if ephemeral apps are not supported. -->
     <string-array name="config_ephemeralResolverPackage">
         <item>com.google.android.gms</item>
+    </string-array>
+
+    <!-- Whether to show Connected MAC Randomization in Developer Options
+         as not all devices can support dynamic MAC address change.  -->
+    <bool name="config_wifi_support_connected_mac_randomization">true</bool>
+
+    <!-- The list of components which should be automatically disabled for a specific device. -->
+    <string-array name="config_deviceDisabledComponents" translatable="false">
+        <item>com.google.android.gms/com.google.android.gms.nearby.messages.service.NearbyMessagesService</item>
     </string-array>
 
 </resources>

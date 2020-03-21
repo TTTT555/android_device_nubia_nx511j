@@ -16,6 +16,8 @@
 
 PLATFORM_PATH := device/nubia/nx511j
 
+LLVM_ENABLE_THREADS := true
+
 # Platform
 TARGET_BOARD_PLATFORM := msm8916
 TARGET_BOOTLOADER_BOARD_NAME := MSM8916
@@ -59,11 +61,10 @@ endif
 #AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
 BOARD_USES_ALSA_AUDIO := true
 USE_CUSTOM_AUDIO_POLICY := 1
-USE_XML_AUDIO_POLICY_CONF := 1
 BOARD_USES_GENERIC_AUDIO := true
 TARGET_USES_QCOM_MM_AUDIO := true
 AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
-#USE_LEGACY_AUDIO_POLICY := 1
+USE_XML_AUDIO_POLICY_CONF := 1
 AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT := true
 AUDIO_FEATURE_ENABLED_FLUENCE := true
 
@@ -75,8 +76,8 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(PLATFORM_PATH)/bluetooth
 QCOM_BT_USE_BTNV := true
 
 # Broken Rules
-BUILD_BROKEN_DUP_RULES := true
-BUILD_BROKEN_PHONY_TARGETS := true
+#BUILD_BROKEN_DUP_RULES := true
+#BUILD_BROKEN_PHONY_TARGETS := true
 
 # Camera
 BOARD_QTI_CAMERA_32BIT_ONLY := true
@@ -90,40 +91,35 @@ BOARD_CAMERA_SENSORS := imx234 imx179
 
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
 	/vendor/bin/mm-qcamera-daemon=25 \
-    /vendor/lib/libqomx_jpegenc.so=25 \
-    /system/system/bin/mediaserver=25 \
-    /vendor/lib/libboringssl-compat.so=25
+    /system/bin/mediaserver=25
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
+TARGET_LEGACY_HW_DISK_ENCRYPTION := true
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 # Dexopt
 WITH_DEXPREOPT_DEBUG_INFO := false
 USE_DEX2OAT_DEBUG := false
 DONT_DEXPREOPT_PREBUILTS := true
-#WITH_DEXPREOPT := true
-#WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
-
 
 # Display
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
-TARGET_USES_C2D_COMPOSITION := true
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 TARGET_USES_ION := true
 TARGET_USES_NEW_ION_API :=true
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x2000U | 0x02000000U
+TARGET_USES_C2D_COMPOSITION := true
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
-#PRODUCT_AAPT_CONFIG := normal
-#PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Filesystem
 TARGET_EXFAT_DRIVER := exfat
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-TARGET_USES_MKE2FS := true
+#TARGET_USES_MKE2FS := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_FS_CONFIG_GEN := $(PLATFORM_PATH)/config.fs
 BOARD_ROOT_EXTRA_FOLDERS := firmware persist
@@ -150,6 +146,9 @@ JAVA_SOURCE_OVERLAYS := \
 # Double tap to wake gesture
 TARGET_TAP_TO_WAKE_NODE := "/data/tp/easy_wakeup_gesture"
 
+#Real time battery charging 
+BOARD_GLOBAL_CFLAGS += -DBATTERY_REAL_INFO
+
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
@@ -162,7 +161,7 @@ TARGET_QCOM_NO_FM_FIRMWARE := true
 BOARD_DTBTOOL_ARGS := -2
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 loop.max_part=7
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive androidboot.veritymode=eio#selinux to permissive switch
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive #selinux to permissive switch
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
@@ -174,9 +173,6 @@ TARGET_KERNEL_CONFIG := lineageos_nx511j_defconfig
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 LZMA_RAMDISK_TARGETS := recovery
-
-# Keylayout
-PRODUCT_COPY_FILES := $(filter-out frameworks/base/data/keyboards/Generic.kl:system/usr/keylayout/Generic.kl , $(PRODUCT_COPY_FILES))
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -191,10 +187,8 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2181038080 # new minimal size after repartition
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 10687524864 # new minimal real 12184927744-16384 for crypto footer
-
-# Properties
-TARGET_SYSTEM_PROP += $(PLATFORM_PATH)/system.prop
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 10687524864 # new minimal sz / real ‭10687557632-32768 for crypto footer
+# 12386221568 # new minimal sz / real ‭12386254336‬-32768 for crypto footer
 
 # Render
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
@@ -205,6 +199,8 @@ BOARD_USES_ADRENO := true
 BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QC_TIME_SERVICES := true
 TARGET_POWERHAL_SET_INTERACTIVE_EXT := $(PLATFORM_PATH)/power/power_ext.c
+#TARGET_HAS_LEGACY_POWER_STATS := true
+#TARGET_HAS_NO_WLAN_STATS := true
 TARGET_USES_INTERACTION_BOOST := true
 TARGET_RIL_VARIANT := caf
 QCOM_BSP_LEGACY := true
@@ -228,25 +224,24 @@ BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(PLATFORM_PATH)/sepolicy/private
 #SDClang
 TARGET_USES_SDCLANG := true
 
-# SHIM
-TARGET_LD_SHIM_LIBS := /vendor/lib/hw/camera.msm8916.so|libzte_camera.so \
-    /vendor/lib/hw/camera.msm8916.so|libshim_atomic.so \
-    /vendor/lib/libskia.so|libshim_skia.so \
-    /vendor/bin/perfd|libshim_atomic.so \
-    /vendor/lib/libmmcamera2_imglib_modules.so|libshim_atomic.so \
-    /vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
+# SHIM (for GSI you need other methods)
+#TARGET_LD_SHIM_LIBS := /vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so \
+#    /vendor/lib/hw/camera.msm8916.so|libzte_camera.so \
+#    /vendor/lib/libskia.so|libshim_skia.so
 
 # Treble
-#BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
+PRODUCT_USE_VNDK_OVERRIDE := false
+PRODUCT_TREBLE_LINKER_NAMESPACES_OVERRIDE := false
+BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 #BOARD_VNDK_RUNTIME_DISABLE := true
 #BOARD_VNDK_VERSION := current
-#PRODUCT_FULL_TREBLE_OVERRIDE := true
+PRODUCT_FULL_TREBLE_OVERRIDE := true
 PRODUCT_VENDOR_MOVE_ENABLED := true
 # build a separate vendor.img
 TARGET_COPY_OUT_VENDOR := vendor
 BOARD_USES_VENDORIMAGE := true
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_VENDORIMAGE_PARTITION_SIZE := 335544320 # vendor size after repartition
+BOARD_VENDORIMAGE_PARTITION_SIZE := 335544320 # vendor size in bytes after repartition
 
 # Widevine
 BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 3
@@ -265,7 +260,6 @@ TARGET_USES_WCNSS_CTRL := true
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
-#WIFI_HIDL_FEATURE_DISABLE_AP_MAC_RANDOMIZATION := true
 
 
 # Inherit from proprietary files
