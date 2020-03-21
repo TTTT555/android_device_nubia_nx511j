@@ -30,5 +30,3 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.light@2\.0-service\.nubia     u:object_r:hal_light_default_exec:s0
 
 
-# firmware
-/firmware(/.*)?        u:object_r:firmware_file:s0
