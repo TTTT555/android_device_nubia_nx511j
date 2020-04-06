@@ -30,7 +30,7 @@ on init
     mount none /vendor/etc/usb_audio_policy_configuration.xml /system/etc/usb_audio_policy_configuration.xml bind
 
     # bind legacy ld.config.vndk_lite.txt and Camera's legacy HAL1 libraries for GSIs
-    mount none /vendor/etc/ld.config.vndk_lite.txt /system/etc/ld.config.vndk_lite.txt bind
+    #mount none /vendor/etc/ld.config.vndk_lite.txt /system/etc/ld.config.vndk_lite.txt bind
     # it will be enabled with adaptation patch
     #mount none /vendor/bin/mediaserver /system/bin/mediaserver bind
     #mount none /vendor/lib/libcameraservice.so /system/lib/libcameraservice.so bind

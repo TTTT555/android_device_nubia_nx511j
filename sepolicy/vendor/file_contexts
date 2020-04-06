@@ -34,3 +34,6 @@
 
 # atomic
 /vendor/lib(64)?/libshim_atomic\.so     u:object_r:vendor_file:s0
+
+#tombstones
+/tombstones             u:object_r:rootfs:s0
